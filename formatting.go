@@ -65,9 +65,10 @@ func formatPunctuation(words []string) string {
 		}
 
 		// Normal word
-		if result != "" && !inQuote {
+		if result != "" && !strings.HasSuffix(result, "'") {
 			result += " "
 		}
+
 		result += word
 	}
 	return result
