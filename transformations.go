@@ -163,10 +163,8 @@ func processWords(words []string) ([]string, error) {
 				if !hasLetter(result[j]) {
 					return nil, fmt.Errorf("(cap) cannot be applied to: %s", result[j])
 				}
-
 				result[j] = capitalize(result[j])
 			}
-
 			i++
 			continue
 		}
@@ -174,6 +172,5 @@ func processWords(words []string) ([]string, error) {
 		// Normal word
 		result = append(result, words[i])
 	}
-
 	return result, nil
 }
