@@ -1,8 +1,8 @@
-package main
+package helpers
 
 import "strings"
 
-func formatPunctuation(words []string) string {
+func FormatPunctuation(words []string) string {
 	result := ""
 	inQuote := false
 
@@ -10,8 +10,8 @@ func formatPunctuation(words []string) string {
 
 		// Standalone quote
 		if word == "'" {
-			if !inQuote {
-				if result != "" {
+			if !inQuote { //if NOT already inside a quote
+				if result != "" { //add space
 					result += " "
 				}
 				result += "'"

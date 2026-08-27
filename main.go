@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	helpers "go-reloaded/flags"
 	"os"
 	"strings"
 )
@@ -43,16 +44,15 @@ func main() {
 	words := strings.Fields(text)
 
 	// Apply the text modifications
-	result, err := processWords(words)
+	result, err := helpers.ProcessWords(words)
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
 	}
-
 	// Fix "a" to "an"
-	fixArticle(result)
+	helpers.FixArticle(result)
 	// Format punctuation and quotes
-	finalText := formatPunctuation(result)
+	finalText := helpers.FormatPunctuation(result)
 
 	// Write the result to the output file
 	err = os.WriteFile(outputFile, []byte(finalText), 0644)

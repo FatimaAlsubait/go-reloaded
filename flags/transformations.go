@@ -1,4 +1,4 @@
-package main
+package helpers
 
 import (
 	"fmt"
@@ -6,7 +6,7 @@ import (
 	"strings"
 )
 
-func processWords(words []string) ([]string, error) {
+func ProcessWords(words []string) ([]string, error) {
 	result := []string{}
 
 	for i := 0; i < len(words); i++ {

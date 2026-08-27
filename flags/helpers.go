@@ -1,4 +1,4 @@
-package main
+package helpers
 
 import "strings"
 
@@ -30,7 +30,7 @@ func startsWithVowelOrH(word string) bool {
 		first == 'u' || first == 'h'
 }
 
-func fixArticle(words []string) {
+func FixArticle(words []string) {
 	for i := 0; i < len(words)-1; i++ {
 		word := words[i]
 
