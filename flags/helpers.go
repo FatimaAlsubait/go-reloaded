@@ -1,13 +1,28 @@
 package helpers
 
-import "strings"
+import (
+	"strings"
+	"unicode"
+)
 
 func capitalize(word string) string {
 	if word == "" {
 		return ""
 	}
 
-	return strings.ToUpper(word[:1]) + strings.ToLower(word[1:])
+	runes := []rune(word)
+
+	for i, r := range runes {
+		if unicode.IsLetter(r) {
+			runes[i] = unicode.ToUpper(r)
+
+			for j := i + 1; j < len(runes); j++ {
+				runes[j] = unicode.ToLower(runes[j])
+			}
+			return string(runes)
+		}
+	}
+	return word
 }
 
 func isPunctuation(char rune) bool {

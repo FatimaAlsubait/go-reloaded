@@ -37,6 +37,13 @@ func main() {
 	text = strings.ReplaceAll(text, "(low)", "(low) ")
 	text = strings.ReplaceAll(text, "(hex)", "(hex) ")
 	text = strings.ReplaceAll(text, "(bin)", "(bin) ")
+
+	text = strings.ReplaceAll(text, "(cap))", "(cap) )")
+	text = strings.ReplaceAll(text, "(up))", "(up) )")
+	text = strings.ReplaceAll(text, "(low))", "(low) )")
+	text = strings.ReplaceAll(text, "(hex))", "(hex) )")
+	text = strings.ReplaceAll(text, "(bin))", "(bin) )")
+
 	text = strings.ReplaceAll(text, "(up ,", "(up, ")
 	text = strings.ReplaceAll(text, "(low ,", "(low, ")
 	text = strings.ReplaceAll(text, "(cap ,", "(cap, ")

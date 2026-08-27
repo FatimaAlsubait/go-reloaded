@@ -94,7 +94,11 @@ func ProcessWords(words []string) ([]string, error) {
 			number, err := strconv.Atoi(numberText)
 
 			if err != nil {
-				return nil, fmt.Errorf("invalid number in (up, N)")
+				return nil, fmt.Errorf("invalid number: %s", numberText)
+			}
+
+			if number <= 0 {
+				return nil, fmt.Errorf("number must be greater than 0: %d", number)
 			}
 
 			if number > len(result) {
@@ -123,7 +127,11 @@ func ProcessWords(words []string) ([]string, error) {
 			number, err := strconv.Atoi(numberText)
 
 			if err != nil {
-				return nil, fmt.Errorf("invalid number in (low, N)")
+				return nil, fmt.Errorf("invalid number: %s", numberText)
+			}
+
+			if number <= 0 {
+				return nil, fmt.Errorf("number must be greater than 0: %d", number)
 			}
 
 			if number > len(result) {
@@ -152,7 +160,11 @@ func ProcessWords(words []string) ([]string, error) {
 			number, err := strconv.Atoi(numberText)
 
 			if err != nil {
-				return nil, fmt.Errorf("invalid number in (cap, N)")
+				return nil, fmt.Errorf("invalid number: %s", numberText)
+			}
+
+			if number <= 0 {
+				return nil, fmt.Errorf("number must be greater than 0: %d", number)
 			}
 
 			if number > len(result) {

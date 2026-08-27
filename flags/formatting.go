@@ -68,8 +68,15 @@ func FormatPunctuation(words []string) string {
 		}
 
 		// Normal word
-		if result != "" && !strings.HasSuffix(result, "'") {
-			result += " "
+		if result != "" {
+			if !strings.HasSuffix(result, "'") || !inQuote {
+				result += " "
+			}
+			if word == ")" {
+				result = strings.TrimSpace(result)
+				result += ")"
+				continue
+			}
 		}
 
 		result += word
