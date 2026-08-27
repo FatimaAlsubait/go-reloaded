@@ -49,7 +49,8 @@ func main() {
 	text = strings.ReplaceAll(text, "(cap ,", "(cap, ")
 
 	words := strings.Fields(text)
-
+	words = helpers.NormalizeWords(words)
+	
 	// Apply the text modifications
 	result, err := helpers.ProcessWords(words)
 	if err != nil {
