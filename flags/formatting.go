@@ -36,6 +36,9 @@ func FormatPunctuation(words []string) string {
 
 		// Word ends with a quote
 		if strings.HasSuffix(word, "'") {
+			if result != "" && !strings.HasSuffix(result, "'") {
+				result += " "
+			}
 			result += word
 			inQuote = false
 			continue
