@@ -44,6 +44,18 @@ func FormatPunctuation(words []string) string {
 			continue
 		}
 
+		// Closing parenthesis
+		if word == ")" {
+			result = strings.TrimSpace(result)
+			result += ")"
+			continue
+		}
+
+		if strings.HasPrefix(word, ")") {
+			result = strings.TrimSpace(result)
+			result += word
+			continue
+		}
 		// Check if the entire word is punctuation
 		allPunctuation := true
 
@@ -68,17 +80,11 @@ func FormatPunctuation(words []string) string {
 		}
 
 		// Normal word
-		if result != "" {
+		if result != "" && result != "(" {
 			if !strings.HasSuffix(result, "'") || !inQuote {
 				result += " "
 			}
-			if word == ")" {
-				result = strings.TrimSpace(result)
-				result += ")"
-				continue
-			}
 		}
-
 		result += word
 	}
 	return result

@@ -103,6 +103,19 @@ func FixArticle(words []string) {
 				}
 			}
 		}
+
+		//'a 'A
+		if word == "'a" || word == "'A" {
+			nextWord := strings.TrimRight(words[i+1], ")")
+
+			if startsWithVowelOrH(nextWord) {
+				if word == "'a" {
+					words[i] = "'an"
+				} else {
+					words[i] = "'An"
+				}
+			}
+		}
 	}
 }
 

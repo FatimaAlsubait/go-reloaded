@@ -27,6 +27,10 @@ func ProcessWords(words []string) ([]string, error) {
 			continue
 		}
 
+		if word == "(hex" || word == "hex)" {
+			return nil, fmt.Errorf("hex missing paranthesis")
+		}
+
 		// Binary
 		if word == "(bin)" {
 			if len(result) == 0 {
@@ -40,6 +44,10 @@ func ProcessWords(words []string) ([]string, error) {
 
 			result[len(result)-1] = strconv.FormatInt(number, 10)
 			continue
+		}
+
+		if word == "(bin" || word == "bin)" {
+			return nil, fmt.Errorf("bin missing paranthesis")
 		}
 
 		// Uppercase
@@ -82,6 +90,30 @@ func ProcessWords(words []string) ([]string, error) {
 
 			result[len(result)-1] = capitalize(result[len(result)-1])
 			continue
+		}
+
+		if word == "(up,)" || word == "(up" || word == "up)" {
+			if word == "(up,)" {
+				return nil, fmt.Errorf("(up,) is missing its number")
+			} else {
+				return nil, fmt.Errorf("up missing paranthesis")
+			}
+		}
+
+		if word == "(low,)" || word == "(low" || word == "up)" {
+			if word == "(low,)" {
+				return nil, fmt.Errorf("(low,) is missing its number")
+			} else {
+				return nil, fmt.Errorf("low missing paranthesis")
+			}
+		}
+
+		if word == "(cap,)" || word == "(cap" || word == "cap)" {
+			if word == "(cap,)" {
+				return nil, fmt.Errorf("(cap,) is missing its number")
+			} else {
+				return nil, fmt.Errorf("cap missing paranthesis")
+			}
 		}
 
 		// (up, N)
