@@ -20,6 +20,20 @@ func main() {
 		fmt.Println("Error: files must be .txt files")
 		return
 	}
+
+	info, err := os.Stat(inputFile)
+	if err != nil {
+		fmt.Println("Error checking input file:", err)
+		return
+	}
+
+	const maxSizeBytes = 2 * 1024 * 1024 // 2 MB
+
+	if info.Size() > maxSizeBytes {
+		fmt.Println("Error: input file exceeds maximum allowed size (2MB).")
+		return
+	}
+
 	// Read the input file
 	data, err := os.ReadFile(inputFile)
 	if err != nil {
@@ -32,6 +46,11 @@ func main() {
 	}
 
 	text := string(data)
+
+	if !helpers.ValidateASCII(text) {
+		return
+	}
+
 	text = strings.ReplaceAll(text, "(cap)", "(cap) ")
 	text = strings.ReplaceAll(text, "(up)", "(up) ")
 	text = strings.ReplaceAll(text, "(low)", "(low) ")

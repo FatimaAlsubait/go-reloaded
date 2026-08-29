@@ -1,6 +1,7 @@
 package helpers
 
 import (
+	"fmt"
 	"strings"
 	"unicode"
 )
@@ -23,6 +24,19 @@ func capitalize(word string) string {
 		}
 	}
 	return word
+}
+
+func ValidateASCII(text string) bool {
+	for pos, r := range text {
+		if r > 127 {
+			fmt.Printf(
+				"Error: Invalid character '%c' (Unicode: U+%04X) at position %d. Only standard English ASCII text allowed.\n",
+				r, r, pos,
+			)
+			return false
+		}
+	}
+	return true
 }
 
 func isPunctuation(char rune) bool {
