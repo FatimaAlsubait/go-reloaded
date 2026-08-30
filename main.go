@@ -75,7 +75,7 @@ func main() {
 
 	words := strings.Fields(text)
 	words = helpers.NormalizeWords(words)
-	fmt.Printf("WORDS: %#v\n", words)
+	
 	// Apply the text modifications
 	result, err := helpers.ProcessWords(words)
 	if err != nil {
