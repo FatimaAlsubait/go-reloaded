@@ -61,7 +61,7 @@ func main() {
 	text = strings.ReplaceAll(text, "(low ,", "(low, ")
 	text = strings.ReplaceAll(text, "(cap ,", "(cap, ")
 
-	text = strings.ReplaceAll(text, "(cap)", "CAPTOKEN")
+	text = strings.ReplaceAll(text, "(cap)", "CAPTOKEN") //( hello )
 	text = strings.ReplaceAll(text, "(up)", "UPTOKEN")
 	text = strings.ReplaceAll(text, "(low)", "LOWTOKEN")
 	text = strings.ReplaceAll(text, "(hex)", "HEXTOKEN")

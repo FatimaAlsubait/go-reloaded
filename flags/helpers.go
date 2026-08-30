@@ -19,6 +19,24 @@ func ValidateASCII(text string) bool {
 	return true
 }
 
+// (cap    ,  2)
+func NormalizeWords(words []string) []string {
+	result := []string{}
+
+	for i := 0; i < len(words); i++ {
+		if i+1 < len(words) &&
+			(words[i] == "(cap" || words[i] == "(up" || words[i] == "(low") &&
+			words[i+1] == "," {
+
+			result = append(result, words[i]+",")
+			i++
+			continue
+		}
+		result = append(result, words[i])
+	}
+	return result
+}
+
 func capitalize(word string) string {
 	if word == "" {
 		return ""
@@ -43,37 +61,6 @@ func isPunctuation(char rune) bool {
 	return char == '.' || char == ',' ||
 		char == '!' || char == '?' ||
 		char == ':' || char == ';'
-}
-
-func NormalizeCommands(text string) string {
-	for {
-		newText := strings.ReplaceAll(text, "(cap ", "(cap")
-		newText = strings.ReplaceAll(newText, "(up ", "(up")
-		newText = strings.ReplaceAll(newText, "(low ", "(low")
-
-		if newText == text {
-			break
-		}
-		text = newText
-	}
-	return text
-}
-
-func NormalizeWords(words []string) []string {
-	result := []string{}
-
-	for i := 0; i < len(words); i++ {
-		if i+1 < len(words) &&
-			(words[i] == "(cap" || words[i] == "(up" || words[i] == "(low") &&
-			words[i+1] == "," {
-
-			result = append(result, words[i]+",")
-			i++
-			continue
-		}
-		result = append(result, words[i])
-	}
-	return result
 }
 
 func startsWithVowelOrH(word string) bool {
@@ -131,13 +118,6 @@ func FixArticle(words []string) {
 			}
 		}
 	}
-}
-
-func isApostrophe(word string, index int) bool {
-	if word[index] != '\'' {
-		return false
-	}
-	return index > 0 && index < len(word)-1
 }
 
 func hasLetter(word string) bool {
