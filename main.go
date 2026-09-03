@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	helpers "go-reloaded/flags"
+	"go-reloaded/flags"
 	"os"
 	"strings"
 )
@@ -47,7 +47,7 @@ func main() {
 
 	text := string(data)
 
-	if !helpers.ValidateASCII(text) {
+	if !flags.ValidateASCII(text) {
 		return
 	}
 
@@ -74,19 +74,19 @@ func main() {
 	text = strings.ReplaceAll(text, "BINTOKEN", "(bin)")
 
 	words := strings.Fields(text)
-	words = helpers.NormalizeWords(words)
-	
+	words = flags.NormalizeWords(words)
+
 	// Apply the text modifications
-	result, err := helpers.ProcessWords(words)
+	result, err := flags.ProcessWords(words)
 	if err != nil {
 		fmt.Println("Error:", err)
 		return
 	}
 
 	// Fix "a" to "an"
-	helpers.FixArticle(result)
+	flags.FixArticle(result)
 	// Format punctuation and quotes
-	finalText := helpers.FormatPunctuation(result)
+	finalText := flags.FormatPunctuation(result)
 
 	// Write the result to the output file
 	err = os.WriteFile(outputFile, []byte(finalText), 0644)
